@@ -1,0 +1,9 @@
+.timer-component {
+  padding: 20px;
+  border: 3px solid blue;
+
+  > .time {
+    font-size: 36px;
+    font-weight: bold;
+  }
+}
