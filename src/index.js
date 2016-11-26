@@ -8,11 +8,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { createStoreForApp } from 'helpers/store';
+import { createStore } from 'redux';
 
-// reducers
-import moduleCounterReducer from 'modules/counter';
-import moduleTimerReducer from 'modules/timer';
+import rootReducer from 'cores/rootReducer';
 
 // base container component
 import App from './containers/App';
@@ -23,10 +21,7 @@ import App from './containers/App';
  * Create store
  * --------------------------------------------------------
  */
-const store = createStoreForApp({
-  counter: moduleCounterReducer,
-  timer: moduleTimerReducer
-});
+const store = createStore(rootReducer);
 
 
 /**
