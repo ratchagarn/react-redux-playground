@@ -1,0 +1,46 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #f6f6f6;
+  font-family: Arial;
+  font-size: 16px;
+}
+
+.main-nav {
+  margin: 0 0 10px 0;
+  padding: 0;
+
+  > li {
+    display: inline-block;
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    > a {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #ccc;
+      color: #333;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background-color .2s;
+
+      &.active {
+        background-color: #015ca1;
+        color: white;
+      }
+
+      &:hover {
+        background-color: #126db2;
+        color: white;
+      }
+    }
+  }
+}

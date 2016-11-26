@@ -11,7 +11,7 @@ import { addCounter } from 'modules/counter';
 export default Counter;
 
 /**
- * Prop type
+ * Prop types
  * --------------------------------------------------------
  */
 Counter.PropTypes = {

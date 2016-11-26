@@ -10,7 +10,7 @@ import React from 'react';
 export default Timer;
 
 /**
- * Prop type
+ * Prop types
  * --------------------------------------------------------
  */
 Timer.PropTypes = {

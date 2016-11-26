@@ -4,6 +4,8 @@
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  */
 
+import 'styles/main.scss';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -37,7 +39,7 @@ if (mountNode) {
   ReactDOM.render(
     <Provider store={store}>
       <Router history={browserHistory}>
-        <Route path="/" component={App} />
+        <Route path="/(:path)" component={App} />
       </Router>
     </Provider>,
     mountNode

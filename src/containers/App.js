@@ -7,8 +7,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+// components
+import { IF } from 'components/Helpers';
 import Counter from 'components/Counter';
 import Timer from 'components/Timer';
+
+import { Link } from 'react-router';
+
+// modukes
 import { addCounter, addTick } from 'modules/counter';
 import { timerStart, timerStop, timerSetTime } from 'modules/timer';
 
@@ -17,6 +23,7 @@ class App extends Component {
 
   render() {
     const {
+      params,
       onCounterAdd,
       onCounterIncreateTick,
       onTimerStart,
@@ -34,19 +41,28 @@ class App extends Component {
       status
     } = this.props.timer;
 
+
     return (
       <div className="ApplicationMain">
-        <Counter
-          count={count}
-          tick={tick}
-          onClick={onCounterAdd}
-          onTick={onCounterIncreateTick} />
-        <Timer
-          time={time}
-          status={status}
-          onStart={onTimerStart}
-          onStop={onTimerStop}
-          onSet={onTimerSetTime} />
+        <ul className="main-nav">
+          <li><Link to="counter" activeClassName="active">Counter</Link></li>
+          <li><Link to="timer" activeClassName="active">Timer</Link></li>
+        </ul>
+        <IF condition={params.path === 'counter'}>
+          <Counter
+            count={count}
+            tick={tick}
+            onClick={onCounterAdd}
+            onTick={onCounterIncreateTick} />
+        </IF>
+        <IF condition={params.path === 'timer'}>
+          <Timer
+            time={time}
+            status={status}
+            onStart={onTimerStart}
+            onStop={onTimerStop}
+            onSet={onTimerSetTime} />
+        </IF>
       </div>
     );
   };
