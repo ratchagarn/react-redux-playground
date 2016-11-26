@@ -12,6 +12,9 @@ import { createStore } from 'redux';
 
 import rootReducer from 'cores/rootReducer';
 
+// rounter
+import { Router, Route, browserHistory } from 'react-router';
+
 // base container component
 import App from './containers/App';
 
@@ -33,7 +36,9 @@ const mountNode = document.getElementById('app');
 if (mountNode) {
   ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <Router history={browserHistory}>
+        <Route path="/" component={App} />
+      </Router>
     </Provider>,
     mountNode
   );
