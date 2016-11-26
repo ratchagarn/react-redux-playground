@@ -14,8 +14,7 @@ import Timer from 'components/Timer';
 
 import { Link } from 'react-router';
 
-// modukes
-import { addCounter, addTick } from 'modules/counter';
+// modules
 import { timerStart, timerStop, timerSetTime } from 'modules/timer';
 
 
@@ -51,9 +50,7 @@ class App extends Component {
         <IF condition={params.path === 'counter'}>
           <Counter
             count={count}
-            tick={tick}
-            onClick={onCounterAdd}
-            onTick={onCounterIncreateTick} />
+            tick={tick} />
         </IF>
         <IF condition={params.path === 'timer'}>
           <Timer
@@ -77,8 +74,6 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  onCounterAdd: addCounter,
-  onCounterIncreateTick: addTick,
   onTimerStart: timerStart,
   onTimerStop: timerStop,
   onTimerSetTime: timerSetTime,

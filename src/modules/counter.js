@@ -60,6 +60,11 @@ export default createReducer(initState, {
  * --------------------------------------------------------
  */
 
+export const actionCreators = {
+  addCounter,
+  addTick
+};
+
 /**
  * Add counter
  */

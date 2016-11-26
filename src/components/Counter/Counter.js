@@ -5,10 +5,12 @@
  */
 
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import { addCounter } from 'modules/counter';
+import { actionCreators } from 'modules/counter';
 
-export default Counter;
+export default connect()(Counter);
 
 /**
  * Prop types
@@ -24,7 +26,9 @@ Counter.PropTypes = {
  * Stateless component
  * --------------------------------------------------------
  */
-function Counter({ count, tick, onClick, onTick }) {
+function Counter({ count, tick, dispatch }) {
+
+  const actions = bindActionCreators(actionCreators, dispatch);
 
   return (
     <div className="counter-component">
@@ -32,9 +36,9 @@ function Counter({ count, tick, onClick, onTick }) {
         Tick:
         <input type="text"
                defaultValue={tick}
-               onChange={(e) => onTick(e.target.value)} />
+               onChange={(e) => actions.addTick(e.target.value)} />
       </p>
-      <button onClick={onClick}>Click Me !</button>
+      <button onClick={() => actions.addCounter()}>Click Me !</button>
       <span className="counter">{count}</span>
     </div>
   );
