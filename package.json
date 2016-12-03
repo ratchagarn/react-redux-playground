@@ -22,7 +22,7 @@
     "bourbon": "^4.2.7",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.9",
-    "css-loader": "^0.23.1",
+    "css-loader": "^0.26.1",
     "eslint": "^3.10.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
@@ -37,6 +37,7 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
+    "webpack-combine-loaders": "^2.0.3",
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {

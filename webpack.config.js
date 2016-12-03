@@ -8,13 +8,7 @@ const webpack = require('webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const includePaths = require('./libs/createStyleIncludePath');
-
-// create sass loader settings
-const sassLoaders = [
-  'css',
-  `sass?${includePaths.join('&')}&outputStyle=expanded`
-].join('!');
+const stylesLoader = require('./libs/stylesLoader');
 
 
 /**
@@ -58,7 +52,10 @@ module.exports = {
       },
       {
         test:   /.scss/,
-        loader: ExtractTextPlugin.extract('style-loader', sassLoaders),
+        loader: ExtractTextPlugin.extract(
+          'style-loader',
+          stylesLoader
+        ),
       },
       {
         test: /\.(png|svg|jpg)$/,
