@@ -1,0 +1,109 @@
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// Theme - function
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+$base-space:   10px;
+$base-z-index: 1000;
+
+
+$theme-fonts: (
+  'default': #616366,
+);
+
+$theme-buttons: (
+  'default': #0D88E1,
+);
+
+$theme-inputs: (
+  'default': #F7F9FA,
+);
+
+$theme-elements: (
+  'triangle': #DAE1E6,
+);
+
+$style-borders: (
+  'default': 1px solid #DAE1E6,
+  'error': 1px solid #FF6161,
+);
+
+$style-shadows: (
+  'container' : 0 0 30px rgba(mix(#0D88E1, black, 30%), .3),
+  'help-block': 0 2px 4px rgba(#444B51, .25),
+  'close'     : inset 0 1px 0 rgba(#889CAC, 1),
+);
+
+$color-palette: (
+  'border-default': #DAE1E6,
+);
+
+// Get theme color by type and name
+//
+// @param {String} $type - Theme type.
+// @param {String} $name - Theme type name.
+//
+// @return {Color} Color by theme.
+@function __theme($type, $name: 'default') {
+
+  @if $type == 'font' {
+    @return map-get($theme-fonts, $name);
+  }
+  @else if $type == 'button' {
+    @return map-get($theme-buttons, $name);
+  }
+  @else if $type == 'input' {
+    @return map-get($theme-inputs, $name);
+  }
+  @else if $type == 'element' {
+    @return map-get($theme-elements, $name);
+  }
+
+}
+
+// Get theme style by type and name
+//
+// @param {string} $type - Style type.
+// @param {string} $name - Style type name.
+//
+// @return {properties} Color by theme.
+@function __style($type, $name: 'default') {
+
+  @if $type == 'border' {
+    @return map-get($style-borders, $name);
+  }
+  @else if $type == 'shadow' {
+    @return map-get($style-shadows, $name);
+  }
+
+}
+
+
+// Get color by type and name
+//
+// @param {string} $name - Color type name.
+//
+// @return {properties} Color by theme.
+@function __color($name) {
+  @return map-get($color-palette, $name);
+}
+
+
+// Get space by unit.
+//
+// @param {Number} $unit      - Space unit.
+//
+// @return {String} Size unit in px.
+@function __space($unit) {
+  @return $base-space * $unit;
+}
+
+
+// Get z-index by unit.
+//
+// @param {Number} $unit      - Space unit.
+// @param {Boolean} $negative - Space is negative or not.
+//
+// @return {String} Size unit in px.
+@function __zIndex($unit) {
+  @return $base-z-index * $unit;
+}

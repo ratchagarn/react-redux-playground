@@ -4,34 +4,24 @@
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  */
 
-const path = require('path');
 const webpack = require('webpack');
 const CleanPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-// create include paths
-const includePaths = [
-  `includePaths[]=./src/styles`
-];
-
-// for better performance, add only need paths.
-// const pathFromNodeModules = [
-//   'font-awesome/scss',
-// ];
-//
-// // add path from `node_modules`.
-// pathFromNodeModules.forEach((modulePath) => {
-//   const includePath = path.resolve(__dirname, `./node_modules/${modulePath}`);
-//   includePaths.push(`includePaths[]=${includePath}`);
-// });
+const includePaths = require('./libs/createStyleIncludePath');
 
 // create sass loader settings
 const sassLoaders = [
-  'style',
   'css',
-  `sass?${includePaths.join('&')}&outputStyle=expanded`,
+  `sass?${includePaths.join('&')}&outputStyle=expanded`
 ].join('!');
 
 
+/**
+ * --------------------------------------------------------
+ * Webpack settings
+ * --------------------------------------------------------
+ */
 module.exports = {
 
   entry: './src',
@@ -68,7 +58,7 @@ module.exports = {
       },
       {
         test:   /.scss/,
-        loader: sassLoaders,
+        loader: ExtractTextPlugin.extract('style-loader', sassLoaders),
       },
       {
         test: /\.(png|svg|jpg)$/,
@@ -83,6 +73,7 @@ module.exports = {
 
   plugins: [
     new CleanPlugin('builds'),
-  ],
+    new ExtractTextPlugin('styles.css')
+  ]
 
-}
+};

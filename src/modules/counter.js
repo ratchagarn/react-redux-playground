@@ -4,7 +4,7 @@
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  */
 
-import { createReducer } from 'helpers/store';
+import { createReducer } from 'helpers/redux';
 
 
 /**
@@ -12,7 +12,7 @@ import { createReducer } from 'helpers/store';
  * Initialize state
  * --------------------------------------------------------
  */
-export const initState = {
+export const initialState = {
   tick: 1,
   count: 0
 };
@@ -34,7 +34,7 @@ export const actionTypes = {
  * Reducer
  * --------------------------------------------------------
  */
-export default createReducer(initState, {
+export default createReducer(initialState, {
 
   // Add
   [actionTypes.ADD](state, action) {
@@ -59,7 +59,6 @@ export default createReducer(initState, {
  * Action creators
  * --------------------------------------------------------
  */
-
 export const actionCreators = {
   addCounter,
   addTick

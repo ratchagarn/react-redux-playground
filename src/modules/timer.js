@@ -4,7 +4,7 @@
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  */
 
-import { createReducer } from 'helpers/store';
+import { createReducer } from 'helpers/redux';
 
 
 /**
@@ -12,7 +12,7 @@ import { createReducer } from 'helpers/store';
  * Initialize state
  * --------------------------------------------------------
  */
-export const initState = {
+export const initialState = {
   status: 'stop',
   time: 0
 };
@@ -35,7 +35,7 @@ export const actionTypes = {
  * Reducer
  * --------------------------------------------------------
  */
-export default createReducer(initState, {
+export default createReducer(initialState, {
 
   // Start
   [actionTypes.START](state, action) {
@@ -69,6 +69,12 @@ export default createReducer(initState, {
  * Action creators
  * --------------------------------------------------------
  */
+export const actionCreators = {
+  timerStart,
+  timerStop,
+  timerSetTime
+};
+
 
 /**
  * Start timer

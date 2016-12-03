@@ -20,7 +20,6 @@ import { Router, Route, browserHistory } from 'react-router';
 // base container component
 import App from './containers/App';
 
-
 /**
  * --------------------------------------------------------
  * Create store

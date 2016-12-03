@@ -1,7 +1,11 @@
+@import 'global';
+
 .counter-component {
   margin-bottom: 20px;
   padding: 20px;
   border: 3px solid #0A6;
+
+  @include background-image(linear-gradient(white 0, yellow 50%, transparent 50%));
 
   > .counter {
     margin-left: 10px;
