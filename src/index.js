@@ -10,22 +10,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from 'cores/rootReducer';
+import store from './cores/getStore';
 
 // rounter
 import { Router, Route, browserHistory } from 'react-router';
 
 // base container component
 import App from './containers/App';
-
-/**
- * --------------------------------------------------------
- * Create store
- * --------------------------------------------------------
- */
-const store = createStore(rootReducer, applyMiddleware(thunk));
 
 
 /**
