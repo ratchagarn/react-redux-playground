@@ -1,0 +1,25 @@
+@import 'global';
+
+.component-json-placeholder {
+  padding: __space(2);
+  margin-top: __space(2);
+  margin-bottom: __space(2);
+  background-color: white;
+  border: __style('border');
+  box-shadow: __style('shadow', 'help-block');
+
+  .body {
+    > select {
+      margin-right: __space(1);
+    }
+
+    > pre {
+      display: block;
+      margin-bottom: 0;
+      padding: 10px;
+      border: 1px dashed #ccc;
+      overflow: hidden;
+      font-size: 12px;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@import 'global';
+
+.component-login {
+  > .sign-in-button {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    font-size: 20px;
+  }
+}

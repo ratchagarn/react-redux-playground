@@ -28,7 +28,7 @@ $style-borders: (
 );
 
 $style-shadows: (
-  'container' : 0 0 30px rgba(mix(#0D88E1, black, 30%), .3),
+  'default' : 0 0 30px rgba(mix(#0D88E1, black, 30%), .3),
   'help-block': 0 2px 4px rgba(#444B51, .25),
   'close'     : inset 0 1px 0 rgba(#889CAC, 1),
 );

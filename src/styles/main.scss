@@ -18,6 +18,40 @@ body {
   font-size: 16px;
 }
 
+h1 {
+  font-size: 20px;
+}
+
+button {
+  border: 0;
+  @include user-select(none);
+}
+
+button[disabled] {
+  opacity: .8;
+  pointer-events: none;
+}
+
+.auth-status {
+  margin: __space(2) 0;
+  > span {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+
+  &.success > span {
+    background-color: #0A0;
+    color: white;
+  }
+
+  &.failure > span {
+    background-color: #A00;
+    color: white;
+  }
+}
+
 .main-nav {
   margin: 0 0 10px 0;
   padding: 0;

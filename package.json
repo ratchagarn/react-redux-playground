@@ -36,11 +36,13 @@
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
+    "uuid": "^3.0.1",
     "webpack": "^1.13.3",
     "webpack-combine-loaders": "^2.0.3",
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-redux": "^4.4.6",

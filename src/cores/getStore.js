@@ -27,3 +27,7 @@ const enhancer = composeEnhancers(
 const store = createStore(rootReducer, enhancer);
 
 export default store;
+
+export function dispatch(...args) {
+  return store.dispath(...args);
+}
