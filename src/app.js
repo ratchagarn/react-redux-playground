@@ -22,13 +22,13 @@ import {
 
 
 /**
- * Create application
+ * Render application
  *
  * @param {string} mountNodeId - mount node id.
  * @param {object} store       - redux store.
  * @param {object} history     - react router history.
  */
-export function render(mountNodeId, store, history) {
+export function renderApp(mountNodeId, store, history) {
   const mountNode = document.getElementById(mountNodeId);
 
   // don't do anything if mount node not found.
@@ -40,9 +40,9 @@ export function render(mountNodeId, store, history) {
   ReactDOM.render(
     <Provider store={store}>
       <Router history={history}>
-        <Route path="/" component={Layout}>
+        <Route path="/login" component={Login} onEnter={onLoginEnter}></Route>
+        <Route path="/" component={Layout} onEnter={onAppEnter}>
           <IndexRoute component={Home} />
-          <Route path="login" component={Login} />
           <Route path="counter" component={Counter}/>
           <Route path="json" component={Json}/>
         </Route>
@@ -52,17 +52,17 @@ export function render(mountNodeId, store, history) {
   );
 
 
-  // function onLoginEnter(nextState, replace) {
-  //   const { authenticated } = store.getState().auth;
-  //   if (authenticated) {
-  //     replace('/');
-  //   }
-  // }
-  //
-  // function onAppEnter(nextState, replace) {
-  //   const { authenticated } = store.getState().auth;
-  //   if (!authenticated && nextState.location.pathname !== '/') {
-  //     replace('/login');
-  //   }
-  // }
+  function onLoginEnter(nextState, replace) {
+    const { authenticated } = store.getState().auth;
+    if (authenticated) {
+      replace('/');
+    }
+  }
+
+  function onAppEnter(nextState, replace) {
+    const { authenticated } = store.getState().auth;
+    if (!authenticated) {
+      replace('/login');
+    }
+  }
 }

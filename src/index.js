@@ -13,9 +13,8 @@ import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import store from './cores/configureStore';
 
-import { render } from './app.js';
+import { renderApp } from './app.js';
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-// render application
-render('app', store, history);
+renderApp('app', store, history);

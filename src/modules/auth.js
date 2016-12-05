@@ -13,7 +13,8 @@ import { createReducer } from 'helpers/redux';
  * --------------------------------------------------------
  */
 export const initialState = {
-  authenticated: false
+  authenticated: false,
+  updated: null
 };
 
 
@@ -23,8 +24,9 @@ export const initialState = {
  * --------------------------------------------------------
  */
 export const actionTypes = {
-  SET_AUTH_SUCCESS:  'Auth/SET_AUTH_SUCCESS',
-  SET_AUTH_FAILURE:  'Auth/SET_AUTH_FAILURE'
+  SET_SUCCESS: 'Auth/SET_SUCCESS',
+  SET_FAILURE: 'Auth/SET_FAILURE',
+  SET_UPDATED: 'Auth/SET_UPDATED'
 };
 
 
@@ -36,7 +38,7 @@ export const actionTypes = {
 export default createReducer(initialState, {
 
   // LOGIN/SUCCESS
-  [actionTypes.SET_AUTH_SUCCESS](state, action) {
+  [actionTypes.SET_SUCCESS](state, action) {
     return {
       ...state,
       authenticated: true
@@ -44,10 +46,18 @@ export default createReducer(initialState, {
   },
 
   // LOGOUT/FAILURE
-  [actionTypes.SET_AUTH_FAILURE](state, action) {
+  [actionTypes.SET_FAILURE](state, action) {
     return {
       ...state,
       authenticated: false
+    };
+  },
+
+  // UPDATED TIME
+  [actionTypes.SET_UPDATED](state, action) {
+    return {
+      ...state,
+      updated: action.updated
     };
   }
 });
@@ -60,7 +70,8 @@ export default createReducer(initialState, {
  */
 export const actionCreators = {
   doSetAuthSuccess,
-  doSetAuthFailure
+  doSetAuthFailure,
+  doSetUpdated
 };
 
 /**
@@ -68,15 +79,27 @@ export const actionCreators = {
  */
 export function doSetAuthSuccess() {
   return {
-    type: actionTypes.SET_AUTH_SUCCESS
+    type: actionTypes.SET_SUCCESS
   };
 }
 
 /**
  * Set auth to `failure`
  */
-export function doSetAuthFailure(tick) {
+export function doSetAuthFailure() {
   return {
-    type: actionTypes.SET_AUTH_FAILURE
+    type: actionTypes.SET_FAILURE
+  };
+}
+
+/**
+ * Set auth updated.
+ *
+ * @param {string} updated - updated time.
+ */
+export function doSetUpdated(updated) {
+  return {
+    type: actionTypes.SET_UPDATED,
+    updated
   };
 }

@@ -5,15 +5,22 @@
  */
 
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 
+import Logout from 'components/Logout';
+
+
+/**
+ * --------------------------------------------------------
+ * Statelesss component create layout
+ * --------------------------------------------------------
+ */
 export default function Layout({ children }) {
 
   // build main menu
   const mainMenuNav = buildMainMenuNav([
-    { name: 'Login',   to: '/login' },
     { name: 'Counter', to: '/counter' },
-    { name: 'Json',    to: '/json' }
+    { name: 'Json',    to: '/json' },
   ]);
 
   return (
@@ -26,7 +33,9 @@ export default function Layout({ children }) {
 
       <nav className="rap-main-nav">
         <ul>
+          <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
           {mainMenuNav}
+          <li><Logout backTo="/" className="xxxx">Logout</Logout></li>
         </ul>
       </nav>
 

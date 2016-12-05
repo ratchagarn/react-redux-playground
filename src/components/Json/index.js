@@ -5,7 +5,7 @@
  */
 
 import './Json.scss';
-import Json, { propTypes } from './Json';
+import Json, { PropTypes } from './Json';
 
 import { connect } from 'react-redux';
 
@@ -20,7 +20,7 @@ export default connect(mapStateToProps)(Json);
  */
 function mapStateToProps(state) {
   const componentProps = {};
-  for (const name in propTypes) {
+  for (const name in PropTypes) {
     componentProps[name] = state.json[name];
   }
 

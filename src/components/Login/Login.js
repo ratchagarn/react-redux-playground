@@ -47,7 +47,7 @@ function Login({ auth, dispatch, router }) {
   function onSignIn() {
     dispatch(doSetAuthSuccess());
     const btn = document.getElementById(_rootId).querySelector('button');
-    btn.innerHTML = 'Process... .. .. .';
+    btn.innerHTML = 'Process...';
     btn.setAttribute('disabled', true);
     setTimeout(() => router.replace('/'), 1500);
   }

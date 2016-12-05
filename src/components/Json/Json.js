@@ -14,13 +14,13 @@ export default Json;
  * Prop types
  * --------------------------------------------------------
  */
-export const propTypes = {
+export const PropTypes = {
   status: React.PropTypes.number.isRequired,
   path:   React.PropTypes.string.isRequired,
   data:   React.PropTypes.object
 };
 
-Json.PropTypes = propTypes;
+Json.PropTypes = PropTypes;
 
 
 /**
