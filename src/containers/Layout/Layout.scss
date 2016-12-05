@@ -1,0 +1,65 @@
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// Layout
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+@import 'main';
+
+.rap-header {
+  > h1 {
+    font-size: 20px;
+
+    > a {
+      color: #333;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.rap-main-nav {
+
+  > ul {
+    margin: 0 0 10px 0;
+    padding: 0;
+
+    > li {
+      display: inline-block;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      > a {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #ccc;
+        color: #333;
+        border-radius: 2px;
+        text-decoration: none;
+        transition: background-color .2s;
+
+        &.active {
+          background-color: #015ca1;
+          color: white;
+        }
+
+        &:hover {
+          background-color: #126db2;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+
+.rap-main-body {
+  padding: __space(2);
+  margin-top: __space(4);
+  border: 2px dashed #ccc;
+  background-color: white;
+}

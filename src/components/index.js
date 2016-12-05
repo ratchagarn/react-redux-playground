@@ -4,8 +4,16 @@
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  */
 
-export Counter         from './Counter';
-export Helpers         from './Helpers';
-export JsonPlaceholder from './JsonPlaceholder';
-export Login           from './Login';
-export Timer           from './Timer';
+import Counter         from './Counter';
+import Home            from './Home';
+import JsonPlaceholder from './JsonPlaceholder';
+import Login           from './Login';
+import Timer           from './Timer';
+
+export {
+  Counter,
+  Home,
+  JsonPlaceholder,
+  Login,
+  Timer
+};

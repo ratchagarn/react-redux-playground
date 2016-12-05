@@ -1,0 +1,46 @@
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// Module - Input
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+// Button - default style.
+@mixin input-default() {
+  width: 100%;
+  padding: __space(.8) __space(1);
+  border: __style('border');
+  font-size: rem(18);
+  outline: none;
+  border-radius: 2px;
+  @include transition(.2s);
+
+  @include placeholder {
+    color: __theme('font', 'placeholder');
+  }
+}
+
+@mixin textarea-default() {
+  width: 100%;
+  padding: __space(1);
+  border: __style('border');
+  font-size: rem(18);
+  outline: none;
+  border-radius: 2px;
+  @include transition(.2s);
+
+  @include placeholder {
+    color: __theme('font', 'placeholder');
+  }
+}
+
+
+// Default style
+// --------------------------------------------------------
+input[type="text"],
+input[type="password"],
+input[type="search"] {
+  @include input-default();
+}
+
+
+textarea {
+  @include textarea-default();
+}

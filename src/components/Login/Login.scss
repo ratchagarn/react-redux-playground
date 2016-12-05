@@ -1,10 +1,42 @@
-@import 'global';
+@import 'main';
 
-.component-login {
-  > .sign-in-button {
-    display: block;
-    width: 100%;
-    padding: 20px;
-    font-size: 20px;
+.login-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  padding: __space(2);
+  background-color: white;
+  border: __style('border');
+  border-radius: 2px;
+  box-shadow: __style('shadow');
+  @include transform(translateX(-50%) translateY(-50%))
+
+  > h3 {
+    margin: 0 0 __space(1) 0;
+    padding-bottom: __space(1);
+    border-bottom: __style('border');
   }
+}
+
+.login-form-title {
+  margin: 0 0 __space(1) 0;
+  padding-bottom: __space(1);
+  border-bottom: __style('border');
+}
+
+.login-form-block {
+  margin-bottom: __space(2);
+  > label {
+    display: block;
+    margin-bottom: __space(1);
+  }
+}
+
+.login-form-submit {
+  display: block;
+  width: 100%;
+  font-size: 20px;
+  background-color: #0260a8;
+  color: white;
 }

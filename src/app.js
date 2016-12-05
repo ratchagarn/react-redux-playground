@@ -9,9 +9,16 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute } from 'react-router';
 
-// application component
-import AppContainer from './containers/AppContainer';
-import Login from 'components/Login';
+// container
+import Layout from 'containers/Layout';
+
+// components
+import {
+  Counter,
+  Home,
+  Login
+} from 'components';
+
 
 /**
  * Create application
@@ -32,8 +39,11 @@ export function render(mountNodeId, store, history) {
   ReactDOM.render(
     <Provider store={store}>
       <Router history={history}>
-        <Route path="/login" component={Login} onEnter={onLoginEnter} />
-        <Route path="/(:path)" component={AppContainer} onEnter={onAppEnter} />
+        <Route path="/" component={Layout}>
+          <IndexRoute component={Home} />
+          <Router path="login" component={Login} />
+          <Route path="counter" component={Counter}/>
+        </Route>
       </Router>
     </Provider>,
     mountNode

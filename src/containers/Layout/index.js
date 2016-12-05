@@ -1,11 +1,10 @@
 /**
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
- * Component - Helpers/index
+ * Container - Layout/index
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  */
 
-import IF from './IF';
+import './Layout.scss';
+import Layout from './Layout.js';
 
-export {
-  IF
-};
+export default Layout;

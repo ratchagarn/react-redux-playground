@@ -5,17 +5,12 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
 
 import { v4 } from 'uuid';
-
 import { doSetAuthSuccess } from 'modules/auth';
 
-export default connect((state) => {
-  return {
-    auth: state.auth
-  };
-})(Login);
+
+export default Login;
 
 /**
  * Prop types
@@ -34,9 +29,18 @@ const _rootId = `login-${v4()}`;
 function Login({ auth, dispatch, router }) {
 
   return (
-    <div id={_rootId} className="component-login">
-      <h3>Login</h3>
-      <button className="sign-in-button" onClick={onSignIn}>Sign In !</button>
+    <div id={_rootId} className="login-form">
+      <h3 className="login-form-title">Login</h3>
+      <div className="login-form-block">
+        <label>Username</label>
+        <input type="text" placeholder="Your username" defaultValue="ReactAppPlayGround" />
+      </div>
+
+      <div className="login-form-block">
+        <label>Password</label>
+        <input type="password" placeholder="Your password" defaultValue="password" />
+      </div>
+      <button className="login-form-submit" onClick={onSignIn}>Sign In !</button>
     </div>
   );
 

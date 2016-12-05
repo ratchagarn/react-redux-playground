@@ -1,0 +1,11 @@
+@import 'main';
+
+.home-page {
+  > .welcome {
+    margin: 0;
+    color: #aaa;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1em;
+  }
+}

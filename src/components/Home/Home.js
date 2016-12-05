@@ -1,21 +1,18 @@
 /**
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
- * Component - Helpers - IF
+ * Component - Counter
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  */
 
 import React from 'react';
 
-
-export default IF;
+export default Home;
 
 /**
  * Prop types
  * --------------------------------------------------------
  */
-IF.PropTypes = {
-  condition: React.PropTypes.bool,
-};
+Home.PropTypes = {};
 
 
 /**
@@ -23,12 +20,10 @@ IF.PropTypes = {
  * Stateless component
  * --------------------------------------------------------
  */
-function IF({ condition, children }) {
-  let output = null;
-
-  if (condition === true) {
-    output = children;
-  }
-
-  return output;
+function Home(props) {
+  return (
+    <section className="home-page">
+      <p className="welcome">Welcome to React app playground example</p>
+    </section>
+  );
 }

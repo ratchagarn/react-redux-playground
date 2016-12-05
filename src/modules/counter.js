@@ -60,14 +60,14 @@ export default createReducer(initialState, {
  * --------------------------------------------------------
  */
 export const actionCreators = {
-  addCounter,
-  addTick
+  doAddCounter,
+  doAddTick
 };
 
 /**
  * Add counter
  */
-export function addCounter() {
+export function doAddCounter() {
   return {
     type: actionTypes.ADD
   };
@@ -78,7 +78,7 @@ export function addCounter() {
  *
  * @param {number} add - number of add
  */
-export function addTick(tick) {
+export function doAddTick(tick) {
   return {
     type: actionTypes.TICK,
     tick,

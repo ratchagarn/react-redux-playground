@@ -6,11 +6,10 @@
 
 import React from 'react';
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 
 import { actionCreators } from 'modules/counter';
 
-export default connect()(Counter);
+export default Counter;
 
 /**
  * Prop types
@@ -31,15 +30,13 @@ function Counter({ count, tick, dispatch }) {
   const actions = bindActionCreators(actionCreators, dispatch);
 
   return (
-    <div className="counter-component">
-      <p>
-        Tick:
-        <input type="text"
-               defaultValue={tick}
-               onChange={(e) => actions.addTick(e.target.value)} />
-      </p>
-      <button onClick={() => actions.addCounter()}>Click Me !</button>
-      <span className="counter">{count}</span>
+    <div className="component-counter">
+      <label>Increase:</label>
+      <input type="text"
+             defaultValue={tick}
+             onChange={(e) => actions.doAddTick(e.target.value)} />
+      <button className="add-button"
+              onClick={() => actions.doAddCounter()}>Add Counter - {count}</button>
     </div>
   );
 }
