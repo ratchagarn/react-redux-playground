@@ -5,7 +5,11 @@
  */
 
 import { createStore, applyMiddleware, compose } from 'redux';
+import { browserHistory } from 'react-router';
+
 import thunk from 'redux-thunk';
+import { routerMiddleware, } from 'react-router-redux';
+
 import rootReducer from 'cores/rootReducer';
 
 
@@ -19,7 +23,7 @@ const composeEnhancers =
     }) : compose;
 
 const enhancer = composeEnhancers(
-  applyMiddleware(thunk),
+  applyMiddleware(thunk, routerMiddleware(browserHistory)),
   // other store enhancers if any
 );
 
@@ -28,6 +32,9 @@ const store = createStore(rootReducer, enhancer);
 
 export default store;
 
+/**
+ * Alias for `dispatch`
+ */
 export function dispatch(...args) {
   return store.dispath(...args);
 }

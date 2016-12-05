@@ -13,15 +13,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import store from './cores/getStore';
+import store from './cores/configureStore';
 
 // rounter
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux'
 
 // base container component
 import App from './containers/App';
 import Login from 'components/Login';
 
+const history = syncHistoryWithStore(browserHistory, store);
 
 /**
  * --------------------------------------------------------
@@ -32,7 +34,7 @@ const mountNode = document.getElementById('app');
 if (mountNode) {
   ReactDOM.render(
     <Provider store={store}>
-      <Router history={browserHistory}>
+      <Router history={history}>
         <Route path="/login" component={Login} onEnter={onLoginEnter} />
         <Route path="/(:path)" component={App} onEnter={onAppEnter} />
       </Router>
