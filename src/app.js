@@ -50,17 +50,17 @@ export function render(mountNodeId, store, history) {
   );
 
 
-  function onLoginEnter(nextState, replace) {
-    const { authenticated } = store.getState().auth;
-    if (authenticated) {
-      replace('/');
-    }
-  }
-
-  function onAppEnter(nextState, replace) {
-    const { authenticated } = store.getState().auth;
-    if (!authenticated && nextState.location.pathname !== '/') {
-      replace('/login');
-    }
-  }
+  // function onLoginEnter(nextState, replace) {
+  //   const { authenticated } = store.getState().auth;
+  //   if (authenticated) {
+  //     replace('/');
+  //   }
+  // }
+  //
+  // function onAppEnter(nextState, replace) {
+  //   const { authenticated } = store.getState().auth;
+  //   if (!authenticated && nextState.location.pathname !== '/') {
+  //     replace('/login');
+  //   }
+  // }
 }
