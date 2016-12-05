@@ -1,0 +1,26 @@
+@import 'main';
+
+.component-json {
+  > button {
+    background-color: #cc751e;
+    color: white;
+  }
+
+  > code {
+    display: block;
+    margin-top: __space(1);
+    padding: __space(1);
+    background-color: #e6e6e6;
+    font-family: monospace;
+  }
+
+  .help {
+    margin-top: __space(1);
+    margin-bottom: __space(1);
+    font-size: 12px;
+
+    > a {
+      margin-left: __space(.5);
+    }
+  }
+}

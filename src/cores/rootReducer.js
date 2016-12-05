@@ -10,15 +10,13 @@ import { createStore, combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux'
 
 // reducers
-import moduleAuthReducer from 'modules/auth';
+import moduleAuthReducer    from 'modules/auth';
 import moduleCounterReducer from 'modules/counter';
-import moduleTimerReducer from 'modules/timer';
-import moduleJsonPlaceholderReducer from 'modules/jsonPlaceholder';
+import moduleJsonReducer    from 'modules/Json';
 
 export default combineReducers({
   routing: routerReducer,
   auth: moduleAuthReducer,
   counter: moduleCounterReducer,
-  timer: moduleTimerReducer,
-  jsonPlaceholder: moduleJsonPlaceholderReducer
+  json: moduleJsonReducer
 });

@@ -16,7 +16,8 @@ export default Counter;
  * --------------------------------------------------------
  */
 Counter.PropTypes = {
-  count: React.PropTypes.number
+  count: React.PropTypes.number.isRequired,
+  tick:  React.PropTypes.number
 };
 
 

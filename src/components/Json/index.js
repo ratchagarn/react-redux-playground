@@ -1,15 +1,15 @@
 /**
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
- * Component - Counter/index
+ * Component - Json/index
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  */
 
-import './Counter.scss';
-import Counter from './Counter';
+import './Json.scss';
+import Json, { propTypes } from './Json';
 
 import { connect } from 'react-redux';
 
-export default connect(mapStateToProps)(Counter);
+export default connect(mapStateToProps)(Json);
 
 /**
  * Mapping state to component props
@@ -19,10 +19,10 @@ export default connect(mapStateToProps)(Counter);
  * @return {object} props for component.
  */
 function mapStateToProps(state) {
-  const { count, tick } = state.counter;
+  const componentProps = {};
+  for (const name in propTypes) {
+    componentProps[name] = state.json[name];
+  }
 
-  return {
-    count,
-    tick
-  };
+  return componentProps;
 }

@@ -13,6 +13,6 @@ else if (process.env.NODE_ENV === 'development') {
   baseEndpointUrl = 'https://jsonplaceholder.typicode.com';
 }
 
-export default {
+export {
   baseEndpointUrl
 };

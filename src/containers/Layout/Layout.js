@@ -11,8 +11,9 @@ export default function Layout({ children }) {
 
   // build main menu
   const mainMenuNav = buildMainMenuNav([
-    { name: 'Login', to: '/login' },
-    { name: 'Counter', to: '/counter' }
+    { name: 'Login',   to: '/login' },
+    { name: 'Counter', to: '/counter' },
+    { name: 'Json',    to: '/json' }
   ]);
 
   return (

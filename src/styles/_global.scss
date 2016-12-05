@@ -14,3 +14,13 @@ body {
   font-family: Arial;
   font-size: 16px;
 }
+
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  text-decoration: underline;
+}

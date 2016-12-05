@@ -6,14 +6,12 @@
 
 import Counter         from './Counter';
 import Home            from './Home';
-import JsonPlaceholder from './JsonPlaceholder';
+import Json            from './Json';
 import Login           from './Login';
-import Timer           from './Timer';
 
 export {
   Counter,
   Home,
-  JsonPlaceholder,
-  Login,
-  Timer
+  Json,
+  Login
 };

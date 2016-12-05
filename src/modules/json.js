@@ -1,11 +1,14 @@
 /**
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
- * Moduels - json placeholder
+ * Moduels - json
  * ---
  * Fake Online REST API for Testing and Prototyping
- * https://jsonplaceholder.typicode.com/
+ * https://Json.typicode.com/
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  */
+
+import { baseEndpointUrl } from 'cores/config';
+
 
 /**
  * --------------------------------------------------------
@@ -14,8 +17,8 @@
  */
 export const initialState = {
   status: 'ready', // (ready|loading)
-  data: null,
-  output: ''
+  path: 'posts/1',
+  data: null
 };
 
 
@@ -25,11 +28,11 @@ export const initialState = {
  * --------------------------------------------------------
  */
 export const actionTypes = {
-  SET_DATA:   'JsonPlaceholder/SET_DATA',
-  SET_OUTPUT: 'JsonPlaceholder/SET_OUTPUT',
-  FETCH:      'JsonPlaceholder/FETCH',
-  READY:      'JsonPlaceholder/READY',
-  LOADING:    'JsonPlaceholder/LOADING'
+  SET_DATA:           'Json/SET_DATA',
+  SET_END_POINT_PATH: 'Json/SET_END_POINT_PATH',
+  FETCH:              'Json/FETCH',
+  READY:              'Json/READY',
+  LOADING:            'Json/LOADING'
 };
 
 
@@ -48,10 +51,10 @@ export default function reducer(state = initialState, action) {
         data: action.data
       };
 
-    case actionTypes.SET_OUTPUT:
+    case actionTypes.SET_END_POINT_PATH:
       return {
         ...state,
-        output: action.output
+        path: action.path
       };
 
     case actionTypes.READY:
@@ -79,8 +82,8 @@ export default function reducer(state = initialState, action) {
  */
 export const actionCreators = {
   doRequestData,
+  doSetPath,
   doSetData,
-  doSetOutput,
   doStatusToReady,
   doStatusToLoading
 };
@@ -88,12 +91,14 @@ export const actionCreators = {
 /**
  * Request data from API
  *
+ * @param {string} path - api path for request.
+ *
  * @return {object} action for dispatch.
  */
-export function doRequestData() {
+export function doRequestData(path = '') {
   return (dispatch) => {
     dispatch(doStatusToLoading());
-    return fetch('https://jsonplaceholder.typicode.com/posts/1')
+    return fetch(`${baseEndpointUrl}/${path}`)
     .then((resp) => resp.json())
     .then((data) => {
       dispatch(doStatusToReady());
@@ -118,16 +123,16 @@ export function doSetData(data) {
 }
 
 /**
- * Set output
+ * Set api endpoint path
  *
- * @param {string} output - output content.
+ * @param {string} path - path for api endpoint.
  *
  * @return {object} action for dispatch.
  */
-export function doSetOutput(output) {
+export function doSetPath(path) {
   return {
-    type: actionTypes.SET_OUTPUT,
-    output
+    type: actionTypes.SET_END_POINT_PATH,
+    path
   };
 }
 

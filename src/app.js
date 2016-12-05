@@ -16,7 +16,8 @@ import Layout from 'containers/Layout';
 import {
   Counter,
   Home,
-  Login
+  Json,
+  Login,
 } from 'components';
 
 
@@ -41,8 +42,9 @@ export function render(mountNodeId, store, history) {
       <Router history={history}>
         <Route path="/" component={Layout}>
           <IndexRoute component={Home} />
-          <Router path="login" component={Login} />
+          <Route path="login" component={Login} />
           <Route path="counter" component={Counter}/>
+          <Route path="json" component={Json}/>
         </Route>
       </Router>
     </Provider>,

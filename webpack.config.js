@@ -73,7 +73,7 @@ module.exports = {
     new ExtractTextPlugin('styles.css'),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('developmet'),
+        NODE_ENV: JSON.stringify('development'),
       },
     }),
   ]
