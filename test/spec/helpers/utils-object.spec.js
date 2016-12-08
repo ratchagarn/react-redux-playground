@@ -9,6 +9,7 @@ import { expect } from 'chai';
 import utilObj from 'helpers/utils/object';
 
 /**
+ * --------------------------------------------------------
  * Spec - util - object
  * --------------------------------------------------------
  */

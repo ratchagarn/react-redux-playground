@@ -61,7 +61,7 @@ export default createReducer(initialState, {
  */
 export const actionCreators = {
   doAddCounter,
-  doAddTick
+  doSetTick
 };
 
 /**
@@ -74,11 +74,11 @@ export function doAddCounter() {
 }
 
 /**
- * Increase tick
+ * Set tick
  *
- * @param {number} add - number of add
+ * @param {number} set - number of tick to set.
  */
-export function doAddTick(tick) {
+export function doSetTick(tick) {
   return {
     type: actionTypes.TICK,
     tick,

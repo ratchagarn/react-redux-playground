@@ -5,9 +5,8 @@
  */
 
 import React from 'react';
-import { bindActionCreators } from 'redux';
 
-import { actionCreators } from 'modules/counter';
+import { doAddCounter, doSetTick } from 'modules/counter';
 
 export default Counter;
 
@@ -28,16 +27,15 @@ Counter.PropTypes = {
  */
 function Counter({ count, tick, dispatch }) {
 
-  const actions = bindActionCreators(actionCreators, dispatch);
-
   return (
     <div className="component-counter">
       <label>Increase:</label>
       <input type="text"
+             className="set-tick-input"
              defaultValue={tick}
-             onChange={(e) => actions.doAddTick(e.target.value)} />
+             onChange={(e) => dispatch(doSetTick(e.target.value))} />
       <button className="add-button"
-              onClick={() => actions.doAddCounter()}>Add Counter - {count}</button>
+              onClick={() => dispatch(doAddCounter())}>Add Counter - {count}</button>
     </div>
   );
 }
