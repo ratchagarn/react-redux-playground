@@ -28,7 +28,6 @@
     "eslint": "^3.10.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
-    "ignore-styles": "^5.0.1",
     "jsdom": "^9.8.3",
     "mocha": "^3.1.2",
     "mocha-jsdom": "^1.1.0",

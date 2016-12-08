@@ -4,9 +4,10 @@
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import { doRequestData, doSetPath } from 'modules/Json';
+
 
 export default Json;
 
@@ -14,13 +15,11 @@ export default Json;
  * Prop types
  * --------------------------------------------------------
  */
-export const PropTypes = {
-  status: React.PropTypes.number.isRequired,
-  path:   React.PropTypes.string.isRequired,
-  data:   React.PropTypes.object
+Json.PropTypes = {
+  status: PropTypes.number.isRequired,
+  path:   PropTypes.string.isRequired,
+  data:   PropTypes.object
 };
-
-Json.PropTypes = PropTypes;
 
 
 /**

@@ -4,9 +4,9 @@
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  */
 
-import React from 'react';
-
+import React, { PropTypes } from 'react';
 import { doAddCounter, doSetTick } from 'modules/counter';
+
 
 export default Counter;
 
@@ -15,8 +15,8 @@ export default Counter;
  * --------------------------------------------------------
  */
 Counter.PropTypes = {
-  count: React.PropTypes.number.isRequired,
-  tick:  React.PropTypes.number
+  count: PropTypes.number.isRequired,
+  tick:  PropTypes.number
 };
 
 

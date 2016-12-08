@@ -8,8 +8,13 @@ import { connect } from 'react-redux';
 
 import Logout from './Logout.js';
 
-export default connect((state) => {
+export default connect(mapStateToProps)(Logout);
+export {
+  Logout
+}
+
+function mapStateToProps(state) {
   return {
     auth: state.auth
   };
-})(Logout);
+}
