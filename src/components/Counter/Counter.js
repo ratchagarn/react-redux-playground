@@ -15,8 +15,9 @@ export default Counter;
  * --------------------------------------------------------
  */
 Counter.PropTypes = {
-  count: PropTypes.number.isRequired,
-  tick:  PropTypes.number
+  count:    PropTypes.number.isRequired,
+  tick:     PropTypes.number,
+  dispatch: PropTypes.func,
 };
 
 

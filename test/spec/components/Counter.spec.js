@@ -12,26 +12,32 @@ import { shallow } from 'enzyme';
 import Counter from 'components/Counter/Counter';
 import { actionTypes } from 'modules/counter';
 
-import configureStore from 'redux-mock-store';
+import configureStore from 'redux-mock-store'
 
 
-function setup() {
+function setup(props) {
   const mockStore = configureStore([]);
   const store = mockStore({});
-  const { dispatch } = store;
 
-  const props = {
+  const defaultProps = {
     tick: 1,
-    count: 10,
-    dispatch
+    count: 0,
+    dispatch: store.dispatch
   };
 
-  const enzymeWrapper = shallow(<Counter {...props} />)
+  const mergedProps = {
+    ...defaultProps,
+    ...props
+  };
+
+  const wrapper = shallow(<Counter {...mergedProps} />)
 
   return {
-    props,
-    enzymeWrapper,
-    store
+    wrapper,
+    store,
+    container:    wrapper.find('.component-counter'),
+    setTickInput: wrapper.find('.set-tick-input'),
+    addButton:    wrapper.find('.add-button')
   };
 }
 
@@ -40,45 +46,37 @@ function setup() {
  * Spec - component - Counter
  * --------------------------------------------------------
  */
-describe('Component - Counter', function() {
+describe.only('Component - Counter', function() {
 
-  it('shold render properly', () => {
-    const { enzymeWrapper } = setup();
-    const container = enzymeWrapper.find('.component-counter');
-    const addButton = enzymeWrapper.find('.add-button');
+  it('should render properly', () => {
+    const { container, setTickInput, addButton } = setup({
+      tick: 5,
+      count: 10
+    });
 
     expect(container).to.have.length(1);
+    expect(setTickInput).to.have.length(1);
     expect(addButton).to.have.length(1);
+
+    expect(setTickInput.props().defaultValue).to.equal(5);
     expect(addButton.text()).to.equal('Add Counter - 10');
   });
 
+  it('should button have event `onClick`', () => {
+    const { store, addButton } = setup();
+    expect(typeof addButton.props().onClick).to.equal('function');
 
-  it('should call action add counter properly', () => {
-    const { enzymeWrapper, store } = setup();
-    const addButton = enzymeWrapper.find('.add-button');
-    addButton.props().onClick();
-    expect(store.getActions()).to.deep.equal([
-      {
-        type: actionTypes.ADD
-      }
-    ]);
+    expect(store.getActions()).to.have.length(0);
+    addButton.simulate('click');
+    expect(store.getActions()).to.have.length(1);
   });
 
-  it('should call action set tick properly', () => {
-    const { enzymeWrapper, store } = setup();
-    const setTickInput = enzymeWrapper.find('.set-tick-input');
-    setTickInput.simulate('change', {
-      target: {
-        value: 20
-      }
-    });
+  it('should input can call `onChange`', () => {
+    const { store, setTickInput } = setup();
+    expect(typeof setTickInput.props().onChange).to.equal('function');
 
-    expect(store.getActions()).to.deep.equal([
-      {
-        type: actionTypes.TICK,
-        tick: 20
-      }
-    ]);
+    expect(store.getActions()).to.have.length(0);
+    setTickInput.simulate('change', { target: {} });
+    expect(store.getActions()).to.have.length(1);
   });
-
 });
