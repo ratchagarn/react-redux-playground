@@ -98,7 +98,6 @@ export const actionCreators = {
  */
 export function doRequestData(path = '') {
   const endpoint = `${baseEndpointUrl}/${path}`;
-  console.log(endpoint);
 
   return (dispatch) => {
     dispatch(doStatusToLoading());

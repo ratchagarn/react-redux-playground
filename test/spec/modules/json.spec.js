@@ -9,6 +9,8 @@ import nock from 'nock';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
+import { baseEndpointUrl } from 'cores/config';
+
 import reducer, {
   initialState,
   actionCreators as actions,
@@ -38,21 +40,20 @@ describe('Module - json', function() {
     });
 
     it('should creates Json/READY when fetching data has been done', function(done) {
-      // FIXME: How to use it??
-      // nock('https://jsonplaceholder.typicode.com/')
-      //   .get('/posts/1')
-      //   .reply(200, { body: { todos: ['do something'] }})
+      // mocking request
+      nock(baseEndpointUrl)
+        .get('/posts/1')
+        .reply(200, { mockRequest: 'success' });
 
       const expectedActions = [
         { type: types.LOADING, status: 'loading' },
         { type: types.READY, status: 'ready' },
-        { type: types.SET_DATA, data: null }
-      ]
-      const store = mockStore({ todos: [] })
+        { type: types.SET_DATA, data: { mockRequest: 'success' } }
+      ];
+      const store = mockStore({});
 
       store.dispatch(actions.doRequestData('posts/1'))
         .then(function(resp) {
-          expectedActions[2].data = resp;
           expect(store.getActions()).to.deep.equal(expectedActions);
           done();
         });
