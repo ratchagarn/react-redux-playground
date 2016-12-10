@@ -8,6 +8,7 @@
  */
 
 import { baseEndpointUrl } from 'cores/config';
+import fetch from 'isomorphic-fetch';
 
 
 /**
@@ -96,10 +97,15 @@ export const actionCreators = {
  * @return {object} action for dispatch.
  */
 export function doRequestData(path = '') {
+  const endpoint = `${baseEndpointUrl}/${path}`;
+  console.log(endpoint);
+
   return (dispatch) => {
     dispatch(doStatusToLoading());
-    return fetch(`${baseEndpointUrl}/${path}`)
-    .then((resp) => resp.json())
+    return fetch(endpoint)
+    .then((resp) => {
+      return resp.json();
+    })
     .then((data) => {
       dispatch(doStatusToReady());
       dispatch(doSetData(data));

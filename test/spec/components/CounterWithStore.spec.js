@@ -18,7 +18,7 @@ import { setupTest } from 'test/helpers';
  * Spec - component - Counter
  * --------------------------------------------------------
  */
-describe.only('Component - Counter', function() {
+describe('Component - Counter', function() {
 
   beforeEach(() => {
     this.setup = setupTest(store, Counter, 'counter', {
