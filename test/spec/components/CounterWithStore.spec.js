@@ -33,6 +33,7 @@ describe.only('Component - Counter', function() {
     });
   })
 
+
   it('should render properly', () => {
     const { rootElement, inputSetTick, buttonAdd } = this.setup({
       tick: 5,
@@ -47,35 +48,28 @@ describe.only('Component - Counter', function() {
     expect(buttonAdd.text()).to.equal('Add Counter - 10');
   });
 
+
   it('should button event `onClick` work properly', () => {
     const { getState, buttonAdd, updateTestView } = this.setup();
-    expect(typeof buttonAdd.props().onClick).to.equal('function');
-    expect(buttonAdd.text()).to.equal('Add Counter - 0');
-
     buttonAdd.simulate('click');
-    expect(getState()).to.deep.equal({
-      tick: 1,
-      count: 1
-    });
 
     const update = updateTestView();
     expect(update.buttonAdd.text()).to.equal('Add Counter - 1');
   });
 
+
   it('should input event `onChange` work properly', () => {
-    const { getState, buttonAdd, inputSetTick } = this.setup();
-    expect(typeof inputSetTick.props().onChange).to.equal('function');
+    const { getState, buttonAdd, inputSetTick, updateTestView } = this.setup();
+    const newTick = 10;
 
     inputSetTick.simulate('change', {
       target: {
-        value: 10
+        value: newTick
       }
     });
 
-    expect(getState()).to.deep.equal({
-      tick: 10,
-      count: 1
-    });
+    const update = updateTestView();
+    expect(update.inputSetTick.props().defaultValue).to.equal(newTick);
   });
 
 });
