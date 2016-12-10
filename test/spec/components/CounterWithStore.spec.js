@@ -8,8 +8,6 @@ import { expect } from 'chai';
 
 import React from 'react';
 import Counter from 'components/Counter/Counter';
-import { doAddCounter, doSetTick } from 'modules/counter';
-
 import store from 'cores/configureStore';
 
 import { setupTest } from 'test/helpers';
