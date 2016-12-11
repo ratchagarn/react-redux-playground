@@ -41,6 +41,7 @@ export function renderApp(mountNodeId, store, history) {
 
   // initial app
   if (getAuthCookieStatus()) {
+    // found auth status, then set store for `authenticated`
     store.dispatch(doSetAuthSuccess());
   }
 
