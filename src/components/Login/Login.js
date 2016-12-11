@@ -9,6 +9,8 @@ import React from 'react';
 import { v4 } from 'uuid';
 import { doSetAuthSuccess } from 'modules/auth';
 
+import { createAuthCookieStatus } from 'helpers/utils/cookie';
+
 
 export default Login;
 
@@ -49,6 +51,11 @@ function Login({ auth, dispatch, router }) {
     const btn = document.getElementById(_rootId).querySelector('button');
     btn.innerHTML = 'Process...';
     btn.setAttribute('disabled', true);
+
+    // store auth staus in cookie, for skip login next time.
+    createAuthCookieStatus();
+
+    // redirect to home page
     setTimeout(() => router.replace('/'), 250);
   }
 }

@@ -4,15 +4,16 @@
  * -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  */
 
-let baseEndpointUrl = '';
+const _baseEndpointUrl = {
+  production: 'https://jsonplaceholder.typicode.com',
+  development: 'https://jsonplaceholder.typicode.com',
+};
+const baseEndpointUrl = _baseEndpointUrl[process.env.NODE_ENV];
 
-if (process.env.NODE_ENV === 'production') {
-  baseEndpointUrl = 'https://jsonplaceholder.typicode.com';
-}
-else if (process.env.NODE_ENV === 'development') {
-  baseEndpointUrl = 'https://jsonplaceholder.typicode.com';
-}
+const cookieAuthStatusName = 'rardpg_auth_status';
+
 
 export {
-  baseEndpointUrl
+  baseEndpointUrl,
+  cookieAuthStatusName
 };

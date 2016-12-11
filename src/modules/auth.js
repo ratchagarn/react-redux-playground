@@ -13,8 +13,7 @@ import { createReducer } from 'helpers/redux';
  * --------------------------------------------------------
  */
 export const initialState = {
-  authenticated: false,
-  updated: null
+  authenticated: false
 };
 
 
@@ -25,8 +24,7 @@ export const initialState = {
  */
 export const actionTypes = {
   SET_SUCCESS: 'Auth/SET_SUCCESS',
-  SET_FAILURE: 'Auth/SET_FAILURE',
-  SET_UPDATED: 'Auth/SET_UPDATED'
+  SET_FAILURE: 'Auth/SET_FAILURE'
 };
 
 
@@ -51,14 +49,6 @@ export default createReducer(initialState, {
       ...state,
       authenticated: false
     };
-  },
-
-  // UPDATED TIME
-  [actionTypes.SET_UPDATED](state, action) {
-    return {
-      ...state,
-      updated: action.updated
-    };
   }
 });
 
@@ -70,8 +60,7 @@ export default createReducer(initialState, {
  */
 export const actionCreators = {
   doSetAuthSuccess,
-  doSetAuthFailure,
-  doSetUpdated
+  doSetAuthFailure
 };
 
 /**
@@ -89,17 +78,5 @@ export function doSetAuthSuccess() {
 export function doSetAuthFailure() {
   return {
     type: actionTypes.SET_FAILURE
-  };
-}
-
-/**
- * Set auth updated.
- *
- * @param {string} updated - updated time.
- */
-export function doSetUpdated(updated) {
-  return {
-    type: actionTypes.SET_UPDATED,
-    updated
   };
 }

@@ -9,6 +9,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute } from 'react-router';
 
+import { doSetAuthSuccess } from 'modules/auth';
+import { getAuthCookieStatus } from 'helpers/utils/cookie';
+
 // container
 import Layout from 'containers/Layout';
 
@@ -36,6 +39,12 @@ export function renderApp(mountNodeId, store, history) {
     return null;
   }
 
+  // initial app
+  if (getAuthCookieStatus()) {
+    store.dispatch(doSetAuthSuccess());
+  }
+
+
   // render application
   ReactDOM.render(
     <Provider store={store}>
@@ -50,7 +59,6 @@ export function renderApp(mountNodeId, store, history) {
     </Provider>,
     mountNode
   );
-
 
   function onLoginEnter(nextState, replace) {
     const { authenticated } = store.getState().auth;

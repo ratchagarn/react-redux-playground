@@ -9,6 +9,8 @@ import { Link, browserHistory } from 'react-router';
 
 import { doSetAuthFailure } from 'modules/auth';
 
+import { removeAuthCookieStatus } from 'helpers/utils/cookie';
+
 
 export default Logout;
 
@@ -51,6 +53,10 @@ function Logout(props) {
   function onClick(event) {
     event.preventDefault();
     dispatch(doSetAuthFailure());
+
+    // remove cookie auth status
+    removeAuthCookieStatus();
+
     // browserHistory.replace(backTo) // it doesn't work as expected.
     window.location.href = backTo;
   }
