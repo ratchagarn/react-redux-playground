@@ -39,16 +39,36 @@ describe('Module - json', function() {
       nock.cleanAll();
     });
 
-    it('should creates Json/READY when fetching data has been done', function(done) {
+    it('should creates Json/SUCCESS when fetching data has been done', function(done) {
       // mocking request
+      const mockData = { mockRequest: 'success' };
       nock(baseEndpointUrl)
         .get('/posts/1')
-        .reply(200, { mockRequest: 'success' });
+        .reply(200, mockData);
 
       const expectedActions = [
         { type: types.LOADING, status: 'loading' },
-        { type: types.READY, status: 'ready' },
-        { type: types.SET_DATA, data: { mockRequest: 'success' } }
+        { type: types.SUCCESS, status: 'success', data: mockData }
+      ];
+      const store = mockStore({});
+
+      store.dispatch(actions.doRequestData('posts/1'))
+        .then(function(resp) {
+          expect(store.getActions()).to.deep.equal(expectedActions);
+          done();
+        });
+    });
+
+    it('should creates Json/FAILURE when fetching data has been failure', function(done) {
+      // mocking request
+      const mockData = 'Error: Not found !';
+      nock(baseEndpointUrl)
+        .get('/posts/1')
+        .reply(404, mockData);
+
+      const expectedActions = [
+        { type: types.LOADING, status: 'loading' },
+        { type: types.FAILURE, status: 'failure', data: mockData }
       ];
       const store = mockStore({});
 
@@ -101,30 +121,47 @@ describe('Module - json', function() {
    * --------------------------------------------------------
    */
   describe('reducers', () => {
-    // it('should return the initial state', () => {
-    //   const state = reducer(undefined, {});
-    //   expect(state).to.deep.equal(initialState);
-    // });
-    //
-    // it('should handle ADD', () => {
-    //   let prevState, state, result;
-    //
-    //   prevState = { tick: 1, count: 10 };
-    //   result = { ...prevState, count: 11 };
-    //   state = reducer(prevState, actions.doAddCounter());
-    //   expect(state).to.deep.equal(result);
-    //
-    //   prevState = { tick: 4, count: 34 };
-    //   result = { ...prevState, count: 38 };
-    //   state = reducer(prevState, actions.doAddCounter());
-    //   expect(state).to.deep.equal(result);
-    // });
-    //
-    // it('should handle TICK', () => {
-    //   const prevState = { tick: 1, count: 25 };
-    //   const result = { ...prevState, tick: 20 };
-    //   const state = reducer(prevState, actions.doSetTick(20));
-    //   expect(state).to.deep.equal(result);
-    // });
+    const prevState = { status: 'ready', path: 'posts/1', data: null };
+
+    it('should return the initial state', () => {
+      const state = reducer(undefined, {});
+      expect(state).to.deep.equal(initialState);
+    });
+
+    it('should handle SET_DATA', () => {
+      const result = { ...prevState, data: { test: 'OK' } };
+      const state = reducer(prevState, actions.doSetData({ test: 'OK' }));
+      expect(state).to.deep.equal(result);
+    });
+
+    it('should handle SET_END_POINT_PATH', () => {
+      const result = { ...prevState, path: 'posts/123' };
+      const state = reducer(prevState, actions.doSetPath('posts/123'));
+      expect(state).to.deep.equal(result);
+    });
+
+    it('should handle READY', () => {
+      const result = { ...prevState, status: 'ready' };
+      const state = reducer(prevState, actions.doStatusToReady());
+      expect(state).to.deep.equal(result);
+    });
+
+    it('should handle LOADING', () => {
+      const result = { ...prevState, status: 'loading' };
+      const state = reducer(prevState, actions.doStatusToLoading());
+      expect(state).to.deep.equal(result);
+    });
+
+    it('should handle SUCCESS', () => {
+      const result = { ...prevState, status: 'success', data: 'Success' };
+      const state = reducer(prevState, actions.doStatusToSuccess('Success'));
+      expect(state).to.deep.equal(result);
+    });
+
+    it('should handle FAILURE', () => {
+      const result = { ...prevState, status: 'failure', data: 'Failure' };
+      const state = reducer(prevState, actions.doStatusToFailure('Failure'));
+      expect(state).to.deep.equal(result);
+    });
   });
 });
