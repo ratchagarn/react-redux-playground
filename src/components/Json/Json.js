@@ -34,8 +34,11 @@ function Json({ status, path, data, dispatch }) {
   if (status === 'loading') {
     output = 'Request data from API...';
   }
-  else if (status === 'ready' && data) {
+  else if (status === 'success' && data) {
     output = JSON.stringify(data);
+  }
+  else if (status === 'failure') {
+    output = <strong style={{ color: 'red' }}>{data}</strong>;
   }
 
   return (

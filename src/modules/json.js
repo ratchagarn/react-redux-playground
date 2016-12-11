@@ -17,7 +17,7 @@ import fetch from 'isomorphic-fetch';
  * --------------------------------------------------------
  */
 export const initialState = {
-  status: 'ready', // (ready|loading)
+  status: 'ready', // (loading|success|failure)
   path: 'posts/1',
   data: null
 };
@@ -31,9 +31,10 @@ export const initialState = {
 export const actionTypes = {
   SET_DATA:           'Json/SET_DATA',
   SET_END_POINT_PATH: 'Json/SET_END_POINT_PATH',
-  FETCH:              'Json/FETCH',
   READY:              'Json/READY',
-  LOADING:            'Json/LOADING'
+  LOADING:            'Json/LOADING',
+  SUCCESS:            'Json/SUCCESS',
+  FAILURE:            'Json/FAILURE'
 };
 
 
@@ -59,15 +60,18 @@ export default function reducer(state = initialState, action) {
       };
 
     case actionTypes.READY:
+    case actionTypes.LOADING:
       return {
         ...state,
         status: action.status
       };
 
-    case actionTypes.LOADING:
+    case actionTypes.SUCCESS:
+    case actionTypes.FAILURE:
       return {
         ...state,
-        status: action.status
+        status: action.status,
+        data: action.data
       };
 
     default:
@@ -86,7 +90,9 @@ export const actionCreators = {
   doSetPath,
   doSetData,
   doStatusToReady,
-  doStatusToLoading
+  doStatusToLoading,
+  doStatusToSuccess,
+  doStatusToFailure
 };
 
 /**
@@ -101,14 +107,21 @@ export function doRequestData(path = '') {
 
   return (dispatch) => {
     dispatch(doStatusToLoading());
+
     return fetch(endpoint)
     .then((resp) => {
+      if (!resp.ok) {
+        throw new Error('Not found !').toString();
+      }
       return resp.json();
     })
     .then((data) => {
-      dispatch(doStatusToReady());
-      dispatch(doSetData(data));
+      dispatch(doStatusToSuccess(data));
       return data;
+    })
+    .catch((error) => {
+      dispatch(doStatusToFailure(error));
+      return error;
     });
   };
 }
@@ -162,5 +175,35 @@ export function doStatusToLoading() {
   return {
     type: actionTypes.LOADING,
     status: 'loading'
+  };
+}
+
+/**
+ * Set status to success
+ *
+ * @param {object} data - data from api.
+ *
+ * @return {object} action for dispatch.
+ */
+export function doStatusToSuccess(data) {
+  return {
+    type: actionTypes.SUCCESS,
+    status: 'success',
+    data
+  };
+}
+
+/**
+ * Set status to failure
+ *
+ * @param {object} data - error data.
+ *
+ * @return {object} action for dispatch.
+ */
+export function doStatusToFailure(data) {
+  return {
+    type: actionTypes.FAILURE,
+    status: 'failure',
+    data
   };
 }
